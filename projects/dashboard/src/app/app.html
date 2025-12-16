@@ -1,8 +1,12 @@
-<div class="p-6">
-  <button (click)="count = count + 1" class="bg-blue-500 text-white p-2">
-    Clicked {{ count }} times
+<div class="p-8">
+  <h1 class="text-3xl font-bold mb-4">Dashboard (Optimized)</h1>
+
+  <!-- FIX: Call the signal as a function to read it -->
+  <button (click)="increment()" class="px-4 py-2 bg-blue-600 text-white rounded">
+    Clicked {{ count() }} times
   </button>
 
-  <!-- This widget will re-render every time the button above is clicked -->
-  <shared-heavy-widget></shared-heavy-widget>
+  <div class="mt-6">
+    <shared-heavy-widget></shared-heavy-widget>
+  </div>
 </div>
