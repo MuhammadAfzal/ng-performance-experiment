@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { UtilsService } from 'shared-ui';
+import { HeavyCalcPipe } from 'shared-ui';
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [HeavyCalcPipe],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
@@ -14,9 +15,9 @@ export class App {
   productIds = Array.from({ length: 50 }, (_, i) => i + 1);
 
   // This is the function being called from the template
-  getCalculatedValue(id: number): number {
-    return this.utils.heavyCalculation(id);
-  }
+  // getCalculatedValue(id: number): number {
+  //   return this.utils.heavyCalculation(id);
+  // }
 
   // A simple method to trigger Change Detection
   triggerRefresh() {

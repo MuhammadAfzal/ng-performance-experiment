@@ -7,10 +7,10 @@
 
   <div class="grid grid-cols-1 gap-2">
     @for (id of productIds; track id) {
-    <div class="p-3 border rounded bg-gray-50 flex justify-between">
-      <span class="font-medium">Product #{{ id }}</span>
-      <!-- THE BOTTLENECK: Function call inside @for -->
-      <span class="text-blue-600 font-bold"> Value: {{ getCalculatedValue(id) }} </span>
+    <div class="p-3 border rounded">
+      <span>Product #{{ id }}</span>
+      <!-- FIXED: Using the Pure Pipe instead of function call -->
+      <span class="text-green-600 font-bold"> Value: {{ id | heavyCalc }} </span>
     </div>
     }
   </div>
