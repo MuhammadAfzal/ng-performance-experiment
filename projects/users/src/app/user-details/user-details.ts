@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { interval } from 'rxjs';
 
 @Component({
@@ -9,11 +10,12 @@ import { interval } from 'rxjs';
   styleUrl: './user-details.css',
 })
 export class UserDetails implements OnInit {
+  private destroyRef = inject(DestroyRef);
   ngOnInit() {
-    // BUG: This subscription is never closed!
-    // It will keep running even after the component is removed from the DOM.
-    interval(1000).subscribe((val) => {
-      console.log('Ghost Subscription running... Value:', val);
-    });
+    interval(1000)
+      .pipe(takeUntilDestroyed(this.destroyRef)) // AUTO-CLEANUP
+      .subscribe((val) => {
+        console.log('Ghost Subscription running... Value:', val);
+      });
   }
 }
